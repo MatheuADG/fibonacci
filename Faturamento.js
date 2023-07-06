@@ -1,13 +1,11 @@
 function calcularEstatisticasFaturamento(vetorFaturamento) {
-  var menorFaturamento = Infinity;
-  var maiorFaturamento = -Infinity;
-  var totalFaturamento = 0;
-  var diasComFaturamentoSuperiorMedia = 0;
-  var diasNoAno = 0;
+  let menorFaturamento = Infinity;
+  let maiorFaturamento = -Infinity;
+  let totalFaturamento = 0;
+  let diasComFaturamentoSuperiorMedia = 0;
+  let diasNoAno = 0;
 
-  for (var i = 0; i < vetorFaturamento.length; i++) {
-    var faturamentoDia = vetorFaturamento[i];
-
+  vetorFaturamento.forEach((faturamentoDia) => {
     if (faturamentoDia !== 0) {
       diasNoAno++;
       totalFaturamento += faturamentoDia;
@@ -20,27 +18,27 @@ function calcularEstatisticasFaturamento(vetorFaturamento) {
         maiorFaturamento = faturamentoDia;
       }
     }
-  }
+  });
 
-  var mediaAnual = totalFaturamento / diasNoAno;
+  const mediaAnual = totalFaturamento / diasNoAno;
 
-  for (var j = 0; j < vetorFaturamento.length; j++) {
-    if (vetorFaturamento[j] > mediaAnual) {
+  vetorFaturamento.forEach((faturamentoDia) => {
+    if (faturamentoDia > mediaAnual) {
       diasComFaturamentoSuperiorMedia++;
     }
-  }
+  });
 
   return {
     menorFaturamento: menorFaturamento,
     maiorFaturamento: maiorFaturamento,
-    diasComFaturamentoSuperiorMedia: diasComFaturamentoSuperiorMedia
+    diasComFaturamentoSuperiorMedia: diasComFaturamentoSuperiorMedia,
   };
 }
 
 // Exemplo de uso
-var vetorFaturamentoAnual = [1500, 2000, 0, 3000, 2500, 0, 1800, 2100, 2200, 0, 1900, 2300, 2400, ...]; // Vetor com os valores de faturamento diário ao longo do ano
+const vetorFaturamentoAnual = [1500, 2000, 0, 3000, 2500, 0, 1800, 2100, 2200, 0, 1900, 2300, 2400, /*... preencha com os valores de faturamento diário ao longo do ano ...*/];
 
-var estatisticas = calcularEstatisticasFaturamento(vetorFaturamentoAnual);
+const estatisticas = calcularEstatisticasFaturamento(vetorFaturamentoAnual);
 
 console.log("Menor valor de faturamento: " + estatisticas.menorFaturamento);
 console.log("Maior valor de faturamento: " + estatisticas.maiorFaturamento);
